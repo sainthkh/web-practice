@@ -3,7 +3,9 @@ function init(app) {
 }
 
 function main(req, res) {
-	res.render('blog/home')
+	res.render('blog/home', {
+		title: "My Blog"
+	})
 }
 
 module.exports = init
