@@ -50,3 +50,49 @@ function setup_post(post) {
 		return post
 	})
 }
+
+exports.insert_post = function(post) {
+	return new Promise(function(resolve, reject){
+		db.run("insert into posts(title, slug, user_id, body, publish, created, updated, status) values($id, $title, $slug, Suser_id, $body, $publish, $created, $updated, $status)", {
+			$title: post.title, 
+			$slug: post.slug, 
+			$user_id: post.user_id, 
+			$body: post.body, 
+			$publish: post.publish, 
+			$created: post.created, 
+			$updated: post.updated, 
+			$status: post.status
+		}, function(err){
+			if(err) reject(err)
+			else resolve(post)
+		})
+	})
+}
+
+exports.update_post = function(post) {
+	return new Promise(function(resolve, reject) {
+		db.run("update posts set title = $title, slug = $slug, user_id = Suser_id, body = $body, publish = $publish, updated = $updated, status = $status) where id = $id", { 
+			$id: post.id,
+			$title: post.title, 
+			$slug: post.slug, 
+			$user_id: post.user_id, 
+			$body: post.body, 
+			$publish: post.publish, 
+			$created: post.created, 
+			$updated: post.updated, 
+			$status: post.status
+		}, function(err){
+			if(err) reject(err)
+			else resolve(post)
+		})
+	})
+}
+
+exports.delete_post = function(slug) {
+	return new Promise(function(resolve, reject) {
+		db.run("delete from posts where slug = ?", slug, function(err){
+			if (err) reject(err)
+			else resolve()
+		})
+	})
+}
