@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
-    "sqlite3": "^3.1.6"
+    "sqlite3": "^3.1.6",
+    "truncate": "^2.0.0"
   }
 }

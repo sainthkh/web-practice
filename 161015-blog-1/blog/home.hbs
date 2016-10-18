@@ -1,1 +1,4 @@
-hello world to you!
+{{#each posts}}
+	<h2><a href="">{{title}}</a></h2>
+	<p class="date"> Published at {{publish}} by {{ author.username }}</p>
+{{/each}}
