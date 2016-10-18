@@ -18,6 +18,7 @@ var hbs = exphbs.create({
 app.engine('.hbs', hbs.engine)
 app.set('view engine', '.hbs')
 
+require('./auth').init(app)
 require('./blog').init(app)
 
 app.listen(3000, function () {
