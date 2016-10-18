@@ -4,6 +4,7 @@ const truncate = require('truncate')
 function init(app) {
 	app.get('/', main)
 	app.get('/:slug', details)
+	app.get('/admin/write', adminWrite)
 }
 
 function main(req, res) {
@@ -20,6 +21,10 @@ function main(req, res) {
 
 function details(req, res) {
 	
+}
+
+function adminWrite(req, res) {
+	res.render('blog/admin-write')
 }
 
 module.exports = init

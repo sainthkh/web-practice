@@ -1,0 +1,29 @@
+<form action="" method="POST" role="form">
+	<div class="form-group">
+		<input type="text" name="title" id="title" value="{{title}}">
+	</div>
+	<div class="form-group">
+		<input type="text" name="slug" id="slug" value="{{slug}}">	
+	</div>
+	<div class="form-group">
+		<input type="hidden" name="author_id" id="author-id" value="{{author.id}}">	
+	</div>
+	<div class="form-group">
+		<input type="text" name="author" id="author" value="{{author.name}}">		
+	</div>
+	<div class="form-group">
+		<textarea name="content" id="content" class="" rows="3" required="required"></textarea>
+	</div>
+	<div class="form-group">
+		<input type="text" name="publish" id="pulish" value="{{publish}}">
+	</div>
+	<div class="form-group">
+		<select name="status" id="status" class="" required="required">
+			<option value="draft">Draft</option>
+			<option value="publish">Publish</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="">Submit</button>		
+	</div>
+</form>
