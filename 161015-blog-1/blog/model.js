@@ -35,17 +35,8 @@ exports.get_posts_by_page = function(page, numberOfPostsInAPage, callback) {
 	})
 }
 
-function user_summary(id) {
-	return new Promise(function(resolve, reject){
-		db.get("select id, username from users where id=(?)", id, function(err, user){
-			if (err) reject(err)
-			resolve(user)
-		})
-	})
-}
-
 function setup_post(post) {
-	return user_summary(post.userid).then(function(user){
+	return user.summary(post.userid).then(function(user){
 		post.author = user
 		return post
 	})
