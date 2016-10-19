@@ -1,6 +1,6 @@
 create table users(
 	id int not null primary key,
-	username varchar(150) not null,
+	username varchar(150) not null unique,
 	first_name varchar(30) not null,
 	last_name varchar(30) not null,
 	email varchar(255),
