@@ -27,8 +27,8 @@ exports.summary = function(id) {
 
 exports.insert = function(user) {
 	return new Promise(function(resolve, reject) {
-		db.run("insert into users(username, first_name, last_name, email, password, is_staff, is_active, is_superuser, last_login, date_joined)" +
-			"values($username, $first_name, $last_name, $email, $password, $is_staff, $is_active, $is_superuser, $last_login, $date_joined)", 
+		db.run("insert into users " +
+			"values(NULL, $username, $first_name, $last_name, $email, $password, $is_staff, $is_active, $is_superuser, $last_login, $date_joined)", 
 			{
 				$username: user.username,
 				$first_name: user.first_name,
@@ -41,8 +41,12 @@ exports.insert = function(user) {
 				$last_login: user.last_login,
 				$date_joined: user.date_joined
 			}, function(err) {
-				if (err) reject(err)
-				else resolve()
+				if (err) {
+					console.error(err)
+					reject(err)
+				} else {
+					resolve(user)
+				}
 			}
 		)
 	})
