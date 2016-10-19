@@ -10,8 +10,8 @@ exports.get = function(id, callback) {
 
 exports.get_user_id_by_username = function(username, callback) {
 	db.serialize(function(){
-		db.get("select id from users where username = ?", username, function(err, user){
-			callback(err, user.id)
+		db.get("select rowid from users where username = ?", username, function(err, user){
+			callback(err, user.rowid)
 		})
 	})
 }
