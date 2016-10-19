@@ -69,7 +69,6 @@ exports.update_post = function(post) {
 			$user_id: post.user_id, 
 			$body: post.body, 
 			$publish: post.publish, 
-			$created: post.created, 
 			$updated: post.updated, 
 			$status: post.status
 		}, function(err){
