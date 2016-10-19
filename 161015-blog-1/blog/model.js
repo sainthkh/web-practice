@@ -45,7 +45,7 @@ function setup_post(post) {
 
 exports.insert = function(post) {
 	return new Promise(function(resolve, reject){
-		db.run("insert into posts(title, slug, user_id, body, publish, created, updated, status) values($id, $title, $slug, Suser_id, $body, $publish, $created, $updated, $status)", {
+		db.run("insert into posts values(NULL, $title, $slug, $user_id, $body, $publish, $created, $updated, $status)", {
 			$title: post.title, 
 			$slug: post.slug, 
 			$user_id: post.author.id, 
@@ -55,8 +55,12 @@ exports.insert = function(post) {
 			$updated: post.updated, 
 			$status: post.status
 		}, function(err){
-			if(err) reject(err)
-			else resolve(post)
+			if(err) {
+				console.error(err)
+				reject(err)
+			} else {
+				resolve(post)
+			} 
 		})
 	})
 }
