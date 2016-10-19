@@ -1,3 +1,5 @@
+"use strict";
+
 const model = require('./model')
 const user = require('../auth').model
 
@@ -11,7 +13,7 @@ function init(app) {
 }
 
 function main(req, res) {
-	model.get_posts_by_page(1, 5, function(posts){
+	model.get_by_page(1, 5, function(posts){
 		res.render('blog/home', {
 			title: "My Blog",
 			posts: posts.map(function(post){
