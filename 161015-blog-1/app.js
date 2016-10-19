@@ -2,11 +2,15 @@ const path = require('path')
 
 const exphbs = require('express-handlebars')
 const express = require('express');
+const bodyparser = require('body-parser')
 
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname));
+
+app.use(bodyparser.urlencoded({ extended: false }))
+app.use(bodyparser.json())
 
 var hbs = exphbs.create({
 	defaultLayout: 'layout',
