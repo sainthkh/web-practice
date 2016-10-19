@@ -35,7 +35,7 @@ function adminWrite(req, res) {
 function post_adminWrite(req, res) {
 	user.get_user_id_by_username(req.body.author_name, function(err, user_id){
 		let currentTime = new Date().getTime() 
-		post = {
+		let post = {
 			title: req.body.title,
 			slug: req.body.slug,
 			author: { id: user_id, username: req.body.author_name },
