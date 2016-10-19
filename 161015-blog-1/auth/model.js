@@ -8,6 +8,14 @@ exports.get = function(id, callback) {
 	})
 }
 
+exports.get_user_id_by_username = function(username, callback) {
+	db.serialize(function(){
+		db.get("select id from users where username = ?", username, function(err, user){
+			callback(err, user.id)
+		})
+	})
+}
+
 exports.summary = function(id) {
 	return new Promise(function(resolve, reject){
 		db.get("select id, username from users where id=(?)", id, function(err, user){
