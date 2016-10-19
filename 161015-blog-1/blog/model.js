@@ -1,6 +1,7 @@
-var db = require('../db')
+const db = require('../db')
+const user = require('../auth').model
 
-exports.get_post = function(slug, callback) {
+exports.get = function(slug, callback) {
 	db.serialize(function(){
 		db.get("select * from posts where slug=(?)", slug, function(err, post){
 			setup_post(post).then(function(post){
@@ -10,7 +11,7 @@ exports.get_post = function(slug, callback) {
 	})
 }
 
-exports.get_post_by_id = function(id, callback) {
+exports.get_by_id = function(id, callback) {
 	db.serialize(function(){
 		db.get("select * from posts where id=(?)", id, function(err, post){
 			setup_post(post).then(function(post){
@@ -20,7 +21,7 @@ exports.get_post_by_id = function(id, callback) {
 	})
 }
 
-exports.get_posts_by_page = function(page, numberOfPostsInAPage, callback) {
+exports.get_by_page = function(page, numberOfPostsInAPage, callback) {
 	db.serialize(function(){
 		db.all("select * from posts limit ?, ?", 
 			numberOfPostsInAPage, (page - 1) * numberOfPostsInAPage, 
@@ -42,7 +43,7 @@ function setup_post(post) {
 	})
 }
 
-exports.insert_post = function(post) {
+exports.insert = function(post) {
 	return new Promise(function(resolve, reject){
 		db.run("insert into posts(title, slug, user_id, body, publish, created, updated, status) values($id, $title, $slug, Suser_id, $body, $publish, $created, $updated, $status)", {
 			$title: post.title, 
@@ -60,7 +61,7 @@ exports.insert_post = function(post) {
 	})
 }
 
-exports.update_post = function(post) {
+exports.update = function(post) {
 	return new Promise(function(resolve, reject) {
 		db.run("update posts set title = $title, slug = $slug, user_id = Suser_id, body = $body, publish = $publish, updated = $updated, status = $status) where id = $id", { 
 			$id: post.id,
@@ -78,7 +79,7 @@ exports.update_post = function(post) {
 	})
 }
 
-exports.delete_post = function(slug) {
+exports.remove = function(slug) {
 	return new Promise(function(resolve, reject) {
 		db.run("delete from posts where slug = ?", slug, function(err){
 			if (err) reject(err)
