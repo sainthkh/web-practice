@@ -1,5 +1,5 @@
 create table users(
-	id int not null primary key,
+	id int primary key,
 	username varchar(150) not null unique,
 	first_name varchar(30) not null,
 	last_name varchar(30) not null,
@@ -13,7 +13,7 @@ create table users(
 );
 
 create table content_types(
-	id int not null primary key,
+	id int primary key,
 	type_name varchar(255) not null
 );
 
@@ -23,7 +23,7 @@ create table groups(
 );
 
 create table permissions(
-	id int not null primary key,
+	id int primary key,
 	name varchar(255) not null,
 	content_type_id int not null,
 	code_name varchar(100) not null,
@@ -31,7 +31,7 @@ create table permissions(
 );
 
 create table group_permissions(
-	id int not null primary key,
+	id int primary key,
 	group_id int not null,
 	permission_id int not null,
 	foreign key (group_id) references groups(id),
@@ -39,7 +39,7 @@ create table group_permissions(
 );
 
 create table user_permissions(
-	id int not null primary key,
+	id int primary key,
 	user_id int not null,
 	permission_id int not null,
 	foreign key (user_id) references users(id),
@@ -47,7 +47,7 @@ create table user_permissions(
 );
 
 create table posts(
-	id int not null primary key,
+	id int primary key,
 	title text not null,
 	slug varchar(250) not null,
 	user_id int not null,
