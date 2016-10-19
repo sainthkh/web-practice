@@ -48,7 +48,7 @@ exports.insert = function(post) {
 		db.run("insert into posts(title, slug, user_id, body, publish, created, updated, status) values($id, $title, $slug, Suser_id, $body, $publish, $created, $updated, $status)", {
 			$title: post.title, 
 			$slug: post.slug, 
-			$user_id: post.user_id, 
+			$user_id: post.author.id, 
 			$body: post.body, 
 			$publish: post.publish, 
 			$created: post.created, 
