@@ -1,4 +1,7 @@
+const util = require('./util')
+
 module.exports = {
 	init: require('./init'), 
-	model: require('./model')
+	model: require('./model'),
+	required: util.ensureAuthenticated
 }
