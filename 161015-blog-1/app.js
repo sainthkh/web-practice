@@ -3,6 +3,8 @@ const path = require('path')
 const exphbs = require('express-handlebars')
 const express = require('express');
 const bodyparser = require('body-parser')
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session)
 
 const app = express();
 
@@ -11,6 +13,15 @@ app.set('views', path.join(__dirname));
 
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
+
+app.use(session({
+	store: new RedisStore({
+		url: 'redis://localhost:6379'
+	}),
+	secret: 'web practice',
+	resave: false,
+	saveUninitialized: false
+}))
 
 var hbs = exphbs.create({
 	defaultLayout: 'layout',
