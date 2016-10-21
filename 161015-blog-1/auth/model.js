@@ -25,6 +25,23 @@ exports.summary = function(id) {
 	})
 }
 
+exports.check_user_password = function(username, password) {
+	return new Promise(function(resolve, reject) {
+		db.get("select password from users where username = ?", username, (err, user) => {
+			if (err) {
+				console.err(err)
+				reject(err)
+			} else {
+				if (user.password == password) {
+					resolve(true)
+				} else {
+					resolve(false)
+				}
+			}
+		})
+	})
+}
+
 exports.insert = function(user) {
 	return new Promise(function(resolve, reject) {
 		db.run("insert into users " +
