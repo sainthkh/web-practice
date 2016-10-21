@@ -1,8 +1,8 @@
 const db = require('../db')
 
-exports.get = function(id, callback) {
+exports.get = function(username, callback) {
 	db.serialize(function(){
-		db.get("select * from users where id = ?", id, function(err, user){
+		db.get('select * from users where username = ?', username, function(err, user){
 			callback(err, user)
 		})
 	})
