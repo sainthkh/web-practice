@@ -1,15 +1,16 @@
 "use strict";
 
 const model = require('./model')
-const user = require('../auth').model
+const auth = require('../auth')
+const user = auth.model
 
 const truncate = require('truncate')
 
 function init(app) {
 	app.get('/', main)
 	app.get('/:slug', details)
-	app.get('/admin/write', adminWrite)
-	app.post('/admin/write', post_adminWrite)
+	app.get('/admin/write', auth.required, adminWrite)
+	app.post('/admin/write', auth.required, post_adminWrite)
 }
 
 function main(req, res) {
