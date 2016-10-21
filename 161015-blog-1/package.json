@@ -15,6 +15,8 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "sqlite3": "^3.1.6",
     "truncate": "^2.0.0"
   }
