@@ -24,7 +24,7 @@ exports.get_by_id = function(id, callback) {
 exports.get_by_page = function(page, numberOfPostsInAPage, callback) {
 	db.serialize(function(){
 		db.all("select * from posts limit ?, ?", 
-			numberOfPostsInAPage, (page - 1) * numberOfPostsInAPage, 
+			(page - 1) * numberOfPostsInAPage, numberOfPostsInAPage, 
 			function(err, posts){
 				Promise.all(posts.map(function(post){
 					return setup_post(post)
