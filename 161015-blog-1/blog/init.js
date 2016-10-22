@@ -1,5 +1,7 @@
 "use strict";
 
+const moment = require('moment')
+
 const model = require('./model')
 const auth = require('../auth')
 const user = auth.model
@@ -19,6 +21,7 @@ function main(req, res) {
 			title: "My Blog",
 			posts: posts.map(function(post){
 				post.body = truncate(post.body, 200)
+				post.publish = moment(post.publish).format("MMM Do, YYYY")	
 				return post
 			})
 		})
