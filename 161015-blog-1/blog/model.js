@@ -4,9 +4,13 @@ const user = require('../auth').model
 exports.get = function(slug, callback) {
 	db.serialize(function(){
 		db.get("select * from posts where slug=(?)", slug, function(err, post){
-			setup_post(post).then(function(post){
-				callback(post)
-			})
+			if(!post) {
+				callback({})
+			} else {
+				setup_post(post).then(function(post){
+					callback(post)
+				})
+			}
 		})
 	})
 }

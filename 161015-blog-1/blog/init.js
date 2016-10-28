@@ -29,7 +29,13 @@ function main(req, res) {
 }
 
 function details(req, res) {
-	
+	model.get(req.params.slug, function(post){
+		res.render('blog/single', {
+			title: post.title,
+			post: post, 
+			publish_date: moment(post.publish).format("MMM Do, YYYY")
+		})
+	})
 }
 
 function adminWrite(req, res) {
