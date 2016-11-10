@@ -1,4 +1,4 @@
-const db = require('../db')
+const db = require('../db').sqlite
 
 exports.get = function(username, callback) {
 	db.serialize(function(){

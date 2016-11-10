@@ -1,4 +1,4 @@
-const db = require('../db')
+const db = require('../db').sqlite
 const user = require('../auth').model
 
 exports.get = function(slug, callback) {
